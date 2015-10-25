@@ -1,0 +1,14 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+    <div class="col-lg-12">
+{#    <div class="col-lg-12 blog-main">#}
+        {% for post in posts %}
+            {% include "layout/index/post.html" %}
+        {% endfor %}
+
+{#        {% include "layout/index/nav.html" %}#}
+
+    </div>
+    <!-- /.blog-main -->
+{% endblock %}

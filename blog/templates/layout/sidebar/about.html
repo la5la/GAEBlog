@@ -1,0 +1,27 @@
+{% load cache %}
+{% load i18n %}
+{% load static from staticfiles %}
+{#<div class="sidebar-module sidebar-module-inset">#}
+{#    <h4>{% trans "about me" %}</h4>#}
+{#    <strong></strong><br>#}
+{#    CGB / IT / help desk manager<br>#}
+{#    GEEK OTAKU#}
+{#</div>#}
+
+<div class="media sidebar-module sidebar-module-inset">
+    <h4>{% trans "About" %}</h4>
+
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object" src="{% static "image/avatar.png" %}" width="64" height="64" alt="...">
+        </a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">Lian Tian</h4>
+        China GuangFa Bank <br>
+        IT Help Desk Manager & OpsDev<br>
+        GEEK OTAKU<br>
+        Amateur Python Programmer <br>
+
+    </div>
+</div>

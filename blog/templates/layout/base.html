@@ -1,0 +1,45 @@
+{% load cache %}
+{% load i18n %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {% include "layout/bootstrap/head.html" %}
+    <title>{% block title %}LIANTIAN'S LOG{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "css/blog.css" %}">
+
+</head>
+<body>
+{% include "layout/masthead.html" %}
+
+<div class="container">
+
+    {% include "layout/header.html" %}
+
+    <div class="row">
+        {% block content %}
+        {% endblock %}
+
+
+    </div>
+
+    <div class="row">
+    {% include "layout/sidebar/base.html" %}
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+{% include "layout/footer.html" %}
+
+</body>
+{% include "layout/bootstrap/script.html" %}
+<script language="JavaScript">
+    var url = window.location;
+
+// Will also work for relative and absolute hrefs
+$('a.blog-nav-item').filter(function() {
+    return this.href == url;
+}).addClass('active');
+</script>
+</html>

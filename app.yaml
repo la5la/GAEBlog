@@ -1,0 +1,49 @@
+application: gaeblog-1067
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+default_expiration: "365d"
+
+handlers:
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /_ah/(mapreduce|queue|warmup|internalupload).*
+  script: mysite.wsgi.application
+  login: admin
+  secure: optional
+
+- url: /static/admin/
+  static_dir: lib/django/contrib/admin/static/admin/
+  secure: optional
+
+- url: /static/
+  static_dir: static/
+  secure: optional
+
+# Set Django admin to be login:admin as well as Django's is_staff restriction
+- url: /admin.*
+  script: mysite.wsgi.application
+  secure: optional
+  login: admin
+
+- url: /admin/.*
+  script: mysite.wsgi.application
+  secure: optional
+  login: admin
+
+- url: /.*
+  script: mysite.wsgi.application
+  secure: optional
+
+skip_files:
+    - manage.py
+    - README.md
+    - requirements.txt
+    - sitepackages/google_appengine*
+    - \.storage.*
+    - \.git
+    - (.*)\.pyc
