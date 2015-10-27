@@ -1,14 +1,19 @@
 {% extends "layout/base.html" %}
+{% load cache %}
+{% load i18n %}
 
-{% block content %}
-    <div class="col-lg-12">
-{#    <div class="col-lg-12 blog-main">#}
-        {% for post in posts %}
-            {% include "layout/index/post.html" %}
-        {% endfor %}
+{% cache 86400 index page_num %}
 
-{#        {% include "layout/index/nav.html" %}#}
+    {% block content %}
+        <div class="col-lg-12">
+            {#    <div class="col-lg-12 blog-main">#}
+            {% for post in posts %}
+                {% include "layout/index/post.html" %}
+            {% endfor %}
 
-    </div>
-    <!-- /.blog-main -->
-{% endblock %}
+            {% include "layout/index/nav.html" %}
+
+        </div>
+        <!-- /.blog-main -->
+    {% endblock %}
+{% endcache %}

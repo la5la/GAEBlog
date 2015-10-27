@@ -26,7 +26,7 @@ from .models import Post
 
 # Create your models here.
 
-PER_PAGE = getattr(settings, 'PER_PAGE', 10)
+PER_PAGE = getattr(settings, 'PER_PAGE', 30)
 BLOG_TITLE = getattr(settings, 'BLOG_TITLE', "BLOG_TITLE")
 BLOG_DESCRIPTION = getattr(settings, 'BLOG_DESCRIPTION', ["BLOG_DESCRIPTION"])
 
@@ -79,9 +79,11 @@ class BaseView(View):
 
 
 class IndexView(BaseView):
-    def get(self, request):
-        posts = Post.objects.filter(type="blog", status="publish").all()
+    def get(self, request, page_num):
+        page_num = int(page_num)
+        posts = Post.objects.filter(type="blog", status="publish").all()[(page_num-1)*PER_PAGE:page_num*PER_PAGE]
         self.response_dict["posts"] = posts
+        self.response_dict["page_num"] = page_num
         return self.response(template_file="index.html")
 
 
@@ -90,4 +92,5 @@ class PostView(BaseView):
         # self.response_dict["url_slug"] = url_slug
         post = Post.objects.filter(url_slug=url_slug).get()
         self.response_dict["post"] = post
+        self.response_dict["url_slug"] = url_slug
         return self.response(template_file="post.html")

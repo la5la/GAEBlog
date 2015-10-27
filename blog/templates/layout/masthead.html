@@ -1,5 +1,6 @@
 {% load cache %}
 {% load i18n %}
+{% cache 86400 masthead %}
 <div class="blog-masthead">
     <div class="container">
         <nav class="blog-nav">
@@ -11,4 +12,5 @@
         </nav>
     </div>
 </div>
+{% endcache %}
 
