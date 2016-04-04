@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>https://blog.liantian.me/</loc>
+    <lastmod>{% now "c" %}</lastmod>
+  <changefreq>always</changefreq>
+  <priority>1.00</priority>
+</url>
+{% for p in posts %}
+<url>
+  <loc>https://blog.liantian.me/{{ p.date|date:"Y" }}/{{ p.date|date:"m" }}/{{ p.date|date:"d" }}/{{ p.url_slug|iriencode }}/</loc>
+  <lastmod>{{ p.modified|date:"c" }}</lastmod>
+  <changefreq>always</changefreq>
+  <priority>0.80</priority>
+</url>
+{% endfor %}
+</urlset>
